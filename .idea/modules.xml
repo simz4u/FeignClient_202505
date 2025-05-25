@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FeignClient_202505.iml" filepath="$PROJECT_DIR$/FeignClient_202505.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/FeignClient.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/FeignClient.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server1/FeignClient.server1.main.iml" filepath="$PROJECT_DIR$/.idea/modules/server1/FeignClient.server1.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server2/FeignClient.server2.main.iml" filepath="$PROJECT_DIR$/.idea/modules/server2/FeignClient.server2.main.iml" />
     </modules>
   </component>
 </project>
