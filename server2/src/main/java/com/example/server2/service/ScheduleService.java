@@ -4,10 +4,12 @@ import com.example.common.dto.ScheduleDto;
 //import com.example.server2.mapper.ScheduleMapper;
 import com.example.server2.mapper.ScheduleMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ScheduleService {
@@ -17,31 +19,10 @@ public class ScheduleService {
 
     public void insertSchedule(ScheduleDto scheduleDto) {
         int result = scheduleMapper.insertSchedule(scheduleDto);
+        if (result > 0) {
+            log.info("✅ Server2 DB insert 성공: {}", scheduleDto);
+        } else {
+            log.warn("❌ Server2 DB insert 실패: {}", scheduleDto);
+        }
     }
-
-//    public ScheduleService(ScheduleMapper scheduleMapper) {
-//        this.scheduleMapper = scheduleMapper;
-//    }
-
-//    // XML에 정의된 selectAllSchedules() 메서드 호출
-//    public List<ScheduleDto> getSchedules() {
-//        return scheduleMapper.selectAllSchedules();
-//    }
-//
-//    // 필요하면 다른 메서드도 추가 가능
-//    public ScheduleDto getScheduleById(Long id) {
-//        return scheduleMapper.selectScheduleById(id);
-//    }
-//
-//    public int createSchedule(ScheduleDto dto) {
-//        return scheduleMapper.insertSchedule(dto);
-//    }
-//
-//    public int updateSchedule(ScheduleDto dto) {
-//        return scheduleMapper.updateSchedule(dto);
-//    }
-//
-//    public int deleteSchedule(Long id) {
-//        return scheduleMapper.deleteSchedule(id);
-//    }
 }
