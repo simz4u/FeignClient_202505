@@ -1,3 +1,40 @@
+** Kafka docker-compose.yml **
+version: '3.8'
+
+services:
+zookeeper:
+image: confluentinc/cp-zookeeper:7.5.0
+container_name: zookeeper
+ports:
+- "2181:2181"
+environment:
+ZOOKEEPER_CLIENT_PORT: 2181
+ZOOKEEPER_TICK_TIME: 2000
+
+kafka:
+image: confluentinc/cp-kafka:7.5.0
+container_name: kafka
+ports:
+- "9092:9092"
+depends_on:
+- zookeeper
+environment:
+KAFKA_BROKER_ID: 1
+KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+      # 메시지 보관 기간을 3일로 설정 (밀리초 단위)
+      KAFKA_LOG_RETENTION_MS: 259200000
+
+      # 최대 로그 크기 1GB
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824
+
+
+
+
+
+
 
 ** DB **
 create table FEIGN2_DB.schedule
