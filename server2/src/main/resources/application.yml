@@ -11,6 +11,7 @@ spring:
     bootstrap-servers: localhost:9092
 
     consumer:
+      #  신뢰성 향상, 재시도 설정, 중복 처리 지원, DLT(Dead Letter Topic)
       group-id: scheduler-worker
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
