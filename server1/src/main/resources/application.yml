@@ -17,13 +17,38 @@ spring:
             readTimeout: 5000
   kafka:
     bootstrap-servers: localhost:9092
+
     consumer:
-      group-id: schedule-group
+      group-id: scheduler-worker
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest              # 처음부터 읽기 (옵션: latest, earliest)
+      enable-auto-commit: false                # 수동 커밋 사용 (Listener에서 ack)
+      properties:
+        isolation.level: read_committed        # 정확히 한번 처리에 필요 (옵션: read_uncommitted)
+
     producer:
+      group-id: schedule-group
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all                                # 모든 리플리카가 ack 줄 때까지 기다림
+      retries: 3                               # 전송 실패 시 재시도
+      enable-idempotence: true                 # 중복 전송 방지 (idempotent producer)
+      delivery-timeout-ms: 30000               # 전체 전송 타임아웃
+      linger-ms: 5                             # 배치 전 대기 시간 (성능 최적화용)
+
+    listener:
+      ack-mode: manual                         # Listener에서 수동 커밋 필요
+      missing-topics-fatal: false              # 없는 토픽 있을 경우 에러 무시
+
+    retry:
+      topic:
+        enabled: true                          # @RetryableTopic 지원 활성화
+        attempts: 3                            # 최대 재시도 횟수
+        backoff:
+          delay: 2000                          # 재시도 간격(ms)
+        dlt:
+          topic-suffix: .DLT                   # 실패 시 DLT 토픽으로 전송
 
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
