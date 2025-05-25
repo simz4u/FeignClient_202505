@@ -8,8 +8,8 @@
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="description" column="description"/>
-        <result property="startDateTime" column="start_date_time"/>
-        <result property="endDateTime" column="end_date_time"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
         <result property="allDay" column="all_day"/>
         <result property="location" column="location"/>
         <result property="organizer" column="organizer"/>
@@ -28,10 +28,10 @@
 
     <insert id="insertSchedule" parameterType="com.example.common.dto.ScheduleDto">
         INSERT INTO schedule (
-            title, description, start_date_time, end_date_time, all_day,
+            title, description, start_time, end_time, all_day,
             location, organizer, status, created_at, updated_at
         ) VALUES (
-                     #{title}, #{description}, #{startDateTime}, #{endDateTime}, #{allDay},
+                     #{title}, #{description}, #{startTime}, #{endTime}, #{allDay},
                      #{location}, #{organizer}, #{status}, #{createdAt}, #{updatedAt}
                  )
     </insert>

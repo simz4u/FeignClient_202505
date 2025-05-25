@@ -3,9 +3,11 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mariadb://www.oways.co.kr:3306/FEIGN_DB
+    url: jdbc:mariadb://www.oways.co.kr:3306/FEIGN2_DB
     username: root
     password: asdfasdf
-  mybatis:
-    mapper-locations: classpath:/mapper/**/*.xml
-    type-aliases-package: com.example.common.dto
+
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.example.common.dto

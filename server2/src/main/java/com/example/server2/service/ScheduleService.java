@@ -2,14 +2,23 @@ package com.example.server2.service;
 
 import com.example.common.dto.ScheduleDto;
 //import com.example.server2.mapper.ScheduleMapper;
+import com.example.server2.mapper.ScheduleMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ScheduleService {
-//    private final ScheduleMapper scheduleMapper;
-//
+
+
+    private final ScheduleMapper scheduleMapper;
+
+    public void insertSchedule(ScheduleDto scheduleDto) {
+        int result = scheduleMapper.insertSchedule(scheduleDto);
+    }
+
 //    public ScheduleService(ScheduleMapper scheduleMapper) {
 //        this.scheduleMapper = scheduleMapper;
 //    }

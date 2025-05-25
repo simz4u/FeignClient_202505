@@ -2,6 +2,7 @@ package com.example.server2.controller;
 
 import com.example.common.dto.ScheduleDto;
 import com.example.server2.service.ScheduleService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,13 @@ public class ScheduleController {
     public ScheduleController(ScheduleService scheduleService) {
         this.scheduleService = scheduleService;
     }
+
+    @PostMapping
+    public ResponseEntity<Void> insertSchedule(@RequestBody ScheduleDto scheduleDto) {
+        scheduleService.insertSchedule(scheduleDto);
+        return ResponseEntity.ok().build();
+    }
+
 //
 //    // 전체 일정 조회
 //    @GetMapping
