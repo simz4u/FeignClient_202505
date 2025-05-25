@@ -13,8 +13,8 @@ public class ScheduleDto {
     private Long id;
     private String title;
     private String description;
-    private LocalDateTime startDateTime;
-    private LocalDateTime endDateTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private Boolean allDay;
     private String location;
     private String organizer;
