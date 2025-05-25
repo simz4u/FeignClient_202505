@@ -15,7 +15,7 @@ public interface ScheduleFeignClient {
     List<ScheduleDto> getSchedules();
 
 
-    @PostMapping("/api/schedules")
-    void insertSchedule(@RequestBody ScheduleDto scheduleDto);
+    @PostMapping("/api/schedules/add")
+    ScheduleDto insertSchedule(@RequestBody ScheduleDto scheduleDto);
 
 }

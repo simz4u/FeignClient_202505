@@ -17,12 +17,14 @@ public class ScheduleService {
 
     private final ScheduleMapper scheduleMapper;
 
-    public void insertSchedule(ScheduleDto scheduleDto) {
-        int result = scheduleMapper.insertSchedule(scheduleDto);
-        if (result > 0) {
+    public ScheduleDto insertSchedule(ScheduleDto scheduleDto) {
+        int inserted = scheduleMapper.insertSchedule(scheduleDto);
+        if (inserted > 0) {
             log.info("✅ Server2 DB insert 성공: {}", scheduleDto);
+            return scheduleDto; // 또는 DB에서 다시 조회한 ScheduleDto 반환
         } else {
             log.warn("❌ Server2 DB insert 실패: {}", scheduleDto);
+            throw new RuntimeException("DB insert 실패");
         }
     }
 }

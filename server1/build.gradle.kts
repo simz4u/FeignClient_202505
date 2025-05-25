@@ -17,6 +17,8 @@ dependencies {
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4") // springfw 3.2.5 와 mabatis-spring-boot-start:3.0.4 호환됨
 
     implementation("org.mariadb.jdbc:mariadb-java-client:3.3.2")
+    implementation("org.springframework.kafka:spring-kafka:3.1.1")
+
 
     implementation("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")

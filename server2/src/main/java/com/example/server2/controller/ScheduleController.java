@@ -16,10 +16,10 @@ public class ScheduleController {
         this.scheduleService = scheduleService;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> insertSchedule(@RequestBody ScheduleDto scheduleDto) {
-        scheduleService.insertSchedule(scheduleDto);
-        return ResponseEntity.ok().build();
+    @PostMapping("/add")
+    public ResponseEntity<ScheduleDto> insertSchedule(@RequestBody ScheduleDto scheduleDto) {
+        ScheduleDto savedSchedule = scheduleService.insertSchedule(scheduleDto);
+        return ResponseEntity.ok(savedSchedule); // 또는 .created(URI).body(savedSchedule)
     }
 
 //
