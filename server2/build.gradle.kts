@@ -18,6 +18,8 @@ dependencies {
     implementation("org.springframework.kafka:spring-kafka:3.1.1")
     implementation("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
+    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
 }
 
 val springCloudVersion = "2023.0.0"

@@ -6,6 +6,8 @@ spring:
     url: jdbc:mariadb://www.oways.co.kr:3306/FEIGN2_DB
     username: root
     password: asdfasdf
+  application:
+    name: server2
 
   kafka:
     bootstrap-servers: kafka:9092
@@ -46,3 +48,16 @@ spring:
 mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
   type-aliases-package: com.example.common.dto
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    healthcheck:
+      enabled: true
+  instance:
+    prefer-ip-address: true
+
