@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -19,7 +20,7 @@ public class KafkaConsumerService {
     private final ScheduleService scheduleService;
 
     @KafkaListener(topics = "schedule-topic", groupId = "schedule-group")
-    public void consume(String message) {
+    public void consume(String message, Acknowledgment ack) {
         log.info("[KafkaConsumer] 메시지 수신: {}", message);
         try {
             ScheduleDto dto = objectMapper.readValue(message, ScheduleDto.class);
@@ -29,6 +30,7 @@ public class KafkaConsumerService {
             } else {
                 log.warn("[KafkaConsumer] DB 삽입 실패: {}", dto);
             }
+            ack.acknowledge(); // 수동 커밋
         } catch (Exception e) {
             log.error("[KafkaConsumer] 메시지 처리 중 예외 발생", e);
         }

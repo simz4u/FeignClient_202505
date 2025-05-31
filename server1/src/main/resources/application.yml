@@ -24,7 +24,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       auto-offset-reset: earliest              # 처음부터 읽기 (옵션: latest, earliest)
-      enable-auto-commit: true                # 수동 커밋 사용 (Listener에서 ack)
+      enable-auto-commit: false                # false : 수동 커밋 사용 (Listener에서 ack)
       properties:
         isolation.level: read_committed        # 정확히 한번 처리에 필요 (옵션: read_uncommitted)
 
