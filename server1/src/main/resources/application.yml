@@ -17,7 +17,7 @@ spring:
             readTimeout: 5000
   kafka:
     #  신뢰성 향상, 재시도 설정, 중복 처리 지원, DLT(Dead Letter Topic)
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
 
     consumer:
       group-id: scheduler-worker
