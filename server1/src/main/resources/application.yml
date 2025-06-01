@@ -1,13 +1,13 @@
 server:
-  port: 8081
+  port: 8081              # 유레카 정보 필수
 
 spring:
+  application:
+    name: server1         # 유레카 정보 필수
   datasource:
     url: jdbc:mariadb://www.oways.co.kr:3306/FEIGN_DB
     username: root
     password: asdfasdf
-  application:
-    name: server1
   cloud:
     openfeign:
       client:
@@ -58,13 +58,16 @@ mybatis:
 
 eureka:
   client:
-    service-url:
+    service-url:                 # Eureka Server의 주소 (※ 여러 개일 경우 쉼표로 나열 가능)
       defaultZone: http://eureka:8761/eureka/
-    register-with-eureka: true
-    fetch-registry: true
-    healthcheck:
+    register-with-eureka: true   # Eureka 서버에 등록(register) 하겠다는 의미
+                                 # false로 하면, 클라이언트로만 동작하고 Eureka에 자신을 등록하지 않음
+    fetch-registry: true         # Eureka 서버로부터 다른 서비스의 정보를 가져오겠다(fetch) 는 의미
+                                 # → 이 설정이 true이면, 이 애플리케이션은 다른 서비스의 위치를 조회
+    healthcheck:                 # Spring Boot의 Actuator Health Check를 Eureka에 통합시켜 사용하겠다는 의미
       enabled: true
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: true      # # 호스트네임 대신 IP로 등록
+    instance-id: ${spring.application.name}:${server.port}  # 인스턴스 구분용
 
 
